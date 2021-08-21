@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { Component } from "react";
+import SimpleFormOne from "./components/SimpleFormOne";
+import SimpleFormTwo from "./components/SimpleFormTwo";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      personName: "",
+      personOccupation: "",
+    };
+
+    this.handleFormData = this.handleFormData.bind(this);
+  }
+
+  handleFormData(key, value) {
+    this.setState({
+      [key]: value,
+    });
+  }
+
+  render() {
+    return (
+      <div className="app__container">
+        <SimpleFormOne data={this.state} onInputsChange={this.handleFormData} />
+        <SimpleFormTwo data={this.state} onInputsChange={this.handleFormData} />
+      </div>
+    );
+  }
 }
 
 export default App;
