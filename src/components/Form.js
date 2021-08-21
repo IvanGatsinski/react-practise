@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-export default class SimpleFormTwo extends Component {
+export default class Form extends Component {
   constructor(props) {
     super(props);
 
@@ -15,7 +15,7 @@ export default class SimpleFormTwo extends Component {
     return (
       <div>
         <form>
-          Form Two
+          Form one
           <div>
             <label>Name:</label>
             <input

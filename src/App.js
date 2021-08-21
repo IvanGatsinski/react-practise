@@ -1,7 +1,6 @@
 import "./App.css";
 import React, { Component } from "react";
-import SimpleFormOne from "./components/SimpleFormOne";
-import SimpleFormTwo from "./components/SimpleFormTwo";
+import Form from "./components/Form";
 
 class App extends Component {
   constructor(props) {
@@ -29,11 +28,11 @@ class App extends Component {
   render() {
     return (
       <div className="app__container">
-        <SimpleFormOne
+        <Form
           data={this.state.formData}
           onInputsChange={this.handleFormData}
         />
-        <SimpleFormTwo
+        <Form
           data={this.state.formData}
           onInputsChange={this.handleFormData}
         />
