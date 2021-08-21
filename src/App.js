@@ -8,8 +8,10 @@ class App extends Component {
     super(props);
 
     this.state = {
-      personName: "",
-      personOccupation: "",
+      formData: {
+        personName: "",
+        personOccupation: "",
+      },
     };
 
     this.handleFormData = this.handleFormData.bind(this);
@@ -17,15 +19,24 @@ class App extends Component {
 
   handleFormData(key, value) {
     this.setState({
-      [key]: value,
+      formData: {
+        ...this.state.formData,
+        [key]: value,
+      },
     });
   }
 
   render() {
     return (
       <div className="app__container">
-        <SimpleFormOne data={this.state} onInputsChange={this.handleFormData} />
-        <SimpleFormTwo data={this.state} onInputsChange={this.handleFormData} />
+        <SimpleFormOne
+          data={this.state.formData}
+          onInputsChange={this.handleFormData}
+        />
+        <SimpleFormTwo
+          data={this.state.formData}
+          onInputsChange={this.handleFormData}
+        />
       </div>
     );
   }
