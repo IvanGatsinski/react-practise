@@ -17,11 +17,11 @@ class App extends Component {
     this.handleFormData = this.handleFormData.bind(this);
   }
 
-  handleFormData(key, value) {
+  handleFormData(fieldData) {
     this.setState({
       formData: {
         ...this.state.formData,
-        [key]: value,
+        ...fieldData,
       },
     });
   }

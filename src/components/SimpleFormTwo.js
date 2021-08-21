@@ -8,7 +8,7 @@ export default class SimpleFormTwo extends Component {
   }
 
   handleInputs(e) {
-    this.props.onInputsChange(e.target.name, e.target.value);
+    this.props.onInputsChange({ [e.target.name]: e.target.value });
   }
 
   render() {
