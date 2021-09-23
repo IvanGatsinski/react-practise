@@ -1,25 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React from "react";
+import Dropdown from "./components/Dropdown";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const continents = ["Europe", "Asia", "Africa"];
+
+const countries = {
+  Europe: ["Bulgaria", "Romania", "United Kingdom", "Spain"],
+  Asia: ["Kazakhstan", "India", "South Korea", "Japan"],
+  Africa: ["Ghana", "Morocco", "Egypt", "Botswana"],
+};
+
+export default class App extends React.Component {
+  state = {
+    continent: "",
+    country: "",
+  };
+
+  handleChangeData = (e) => {
+    this.setState({
+      ...this.state,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.continent !== this.state.continent) {
+      this.setState({
+        ...this.state,
+        country: "",
+      });
+    }
+  }
+
+  handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log(this.state);
+  };
+
+  render() {
+    const { continent, country } = this.state;
+
+    return (
+      <form onSubmit={this.handleFormSubmit}>
+        <Dropdown
+          options={continents}
+          selected={continent}
+          name="continent"
+          handleChange={this.handleChangeData}
+        />
+        <Dropdown
+          options={countries[continent] || []}
+          selected={country}
+          name="country"
+          handleChange={this.handleChangeData}
+        />
+        <button type="submit">Submit</button>
+      </form>
+    );
+  }
 }
-
-export default App;
