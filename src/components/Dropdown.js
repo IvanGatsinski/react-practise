@@ -1,4 +1,10 @@
-export default function Dropdown({ selected, name, options, handleChange }) {
+export default function Dropdown({
+  label,
+  selected,
+  name,
+  options,
+  handleChange,
+}) {
   const defaultOption = (
     <option
       value={"Please select an option"}
@@ -20,12 +26,18 @@ export default function Dropdown({ selected, name, options, handleChange }) {
   ];
 
   return (
-    <select
-      value={options.includes(selected) ? selected : "Please select an option"}
-      name={name}
-      onChange={handleChange}
-    >
-      {opts}
-    </select>
+    <>
+      <label htmlFor={label}>{label}</label>
+      <select
+        id={label}
+        value={
+          options.includes(selected) ? selected : "Please select an option"
+        }
+        name={name}
+        onChange={handleChange}
+      >
+        {opts}
+      </select>
+    </>
   );
 }
